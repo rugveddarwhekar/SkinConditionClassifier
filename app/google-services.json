@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "546928473217",
+    "firebase_url": "https://skin-condition-classifier.firebaseio.com",
+    "project_id": "skin-condition-classifier",
+    "storage_bucket": "skin-condition-classifier.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546928473217:android:2889ad2bb49bdc37230980",
+        "android_client_info": {
+          "package_name": "com.example.skinconditionclassifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546928473217-de8a018tgs075adbnqdqojrj6ahql5jl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skinconditionclassifier",
+            "certificate_hash": "5b20a177b3e4a6937557ad7603279cf14ad5b927"
+          }
+        },
+        {
+          "client_id": "546928473217-jfrgfg18eeihm9eob6sugomt4sfdg8lt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOPyr0bauAtvNcLXjICxTi_QeWtc15bME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546928473217-jfrgfg18eeihm9eob6sugomt4sfdg8lt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
