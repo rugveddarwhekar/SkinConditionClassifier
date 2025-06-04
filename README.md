@@ -13,21 +13,78 @@ The project aims to provide a quick, on-device tool for preliminary skin conditi
 - **User-Friendly Interface**: Simple UI with an image preview and clear classification results.
 
 ## Architecture & Diagrams
-The application follows a straightforward architecture:
 
+### System Architecture
+```mermaid
+graph TB
+    subgraph Android App
+        UI[User Interface]
+        ImagePicker[Image Picker]
+        Cropper[Image Cropper]
+        MLKit[Firebase ML Kit]
+        TFLite[TFLite Model]
+    end
+    
+    subgraph Firebase Services
+        AutoML[Firebase AutoML]
+        ModelManager[Model Manager]
+    end
+    
+    UI --> ImagePicker
+    ImagePicker --> Cropper
+    Cropper --> MLKit
+    MLKit --> TFLite
+    TFLite --> Results[Classification Results]
+    
+    AutoML -.-> ModelManager
+    ModelManager -.-> TFLite
 ```
-+------------------+     +------------------+     +------------------+
-|                  |     |                  |     |                  |
-|  User Interface  | --> |  Image Selection | --> |  Image Cropping  |
-|                  |     |                  |     |                  |
-+------------------+     +------------------+     +------------------+
-        |                                                |
-        v                                                v
-+------------------+     +------------------+     +------------------+
-|                  |     |                  |     |                  |
-|  Firebase AutoML | --> |  TFLite Model    | --> |  Classification  |
-|                  |     |                  |     |                  |
-+------------------+     +------------------+     +------------------+
+
+### Data Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant App
+    participant MLKit
+    participant Model
+    
+    User->>App: Select Image
+    App->>App: Crop Image
+    App->>MLKit: Process Image
+    MLKit->>Model: Run Inference
+    Model->>MLKit: Return Predictions
+    MLKit->>App: Format Results
+    App->>User: Display Classification
+```
+
+### Component Interaction
+```mermaid
+classDiagram
+    class MainActivity {
+        +onCreate()
+        +onActivityResult()
+        +setLabelerFromLocalModel()
+        +processImageLabeler()
+    }
+    
+    class FirebaseML {
+        +getInstance()
+        +getOnDeviceAutoMLImageLabeler()
+    }
+    
+    class ImageProcessor {
+        +cropImage()
+        +prepareImage()
+    }
+    
+    class ModelManager {
+        +downloadModel()
+        +updateModel()
+    }
+    
+    MainActivity --> FirebaseML
+    MainActivity --> ImageProcessor
+    FirebaseML --> ModelManager
 ```
 
 ### Components:
@@ -65,5 +122,5 @@ The application follows a straightforward architecture:
 - **Additional Conditions**: Expand the model to classify more skin conditions.
 - **Offline Support**: Ensure robust offline functionality.
 
-## Credits
-Special thanks to Firebase and the Android community for their tools and libraries.
+## License & Credits
+This project is licensed under the MIT License. Special thanks to Firebase and the Android community for their tools and libraries.
